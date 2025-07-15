@@ -11,7 +11,7 @@ import com.surajvanshsv.expensetracker.data.model.Expense;
 import java.util.List;
 
 public class ExpenseRepository {
-    private ExpenseDao expenseDao;
+    private final ExpenseDao expenseDao;
 
     public ExpenseRepository(Application application) {
         ExpenseDatabase db = ExpenseDatabase.getInstance(application);
@@ -24,6 +24,10 @@ public class ExpenseRepository {
 
     public void delete(Expense expense) {
         new Thread(() -> expenseDao.delete(expense)).start();
+    }
+
+    public void update(Expense expense) {
+        new Thread(() -> expenseDao.update(expense)).start();
     }
 
     public LiveData<List<Expense>> getAllExpenses() {
@@ -44,5 +48,10 @@ public class ExpenseRepository {
 
     public LiveData<List<Expense>> filterByCategory(String category) {
         return expenseDao.filterByCategory(category);
+    }
+
+    // ✅ NEW: Filter expenses by month and year
+    public LiveData<List<Expense>> filterByMonth(String month, String year) {
+        return expenseDao.filterByMonth(month, year);
     }
 }

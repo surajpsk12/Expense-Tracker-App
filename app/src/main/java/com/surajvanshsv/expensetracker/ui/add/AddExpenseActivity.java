@@ -3,6 +3,7 @@ package com.surajvanshsv.expensetracker.ui.add;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.widget.*;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -24,6 +25,8 @@ public class AddExpenseActivity extends AppCompatActivity {
     private MaterialButton btnQuickAmount1, btnQuickAmount2, btnQuickAmount3;
     private ExpenseViewModel viewModel;
     private Date selectedDate = new Date(); // Default to today
+
+    private int editingId = -1; // Default for new
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +51,25 @@ public class AddExpenseActivity extends AppCompatActivity {
         // ViewModel
         viewModel = new ViewModelProvider(this).get(ExpenseViewModel.class);
 
-        // Set category options
+        // Category dropdown
         String[] categories = {"Food", "Travel", "Bills", "Shopping", "Other"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, categories);
         spinnerCategory.setAdapter(adapter);
 
-        // Show today's date
+        // Check for edit mode
+        if (getIntent().hasExtra("id")) {
+            editingId = getIntent().getIntExtra("id", -1);
+            String title = getIntent().getStringExtra("title");
+            double amount = getIntent().getDoubleExtra("amount", 0);
+            String category = getIntent().getStringExtra("category");
+            long dateMillis = getIntent().getLongExtra("date", new Date().getTime());
+            selectedDate = new Date(dateMillis);
+
+            editTextTitle.setText(title);
+            editTextAmount.setText(String.valueOf(amount));
+            spinnerCategory.setText(category, false);
+        }
+
         updateDateText();
 
         // Date picker
@@ -72,7 +88,7 @@ public class AddExpenseActivity extends AppCompatActivity {
         btnQuickAmount2.setOnClickListener(v -> editTextAmount.setText("500"));
         btnQuickAmount3.setOnClickListener(v -> editTextAmount.setText("1000"));
 
-        // Save expense
+        // Save logic
         buttonSave.setOnClickListener(v -> {
             String title = editTextTitle.getText().toString().trim();
             String amtStr = editTextAmount.getText().toString().trim();
@@ -92,12 +108,20 @@ public class AddExpenseActivity extends AppCompatActivity {
             }
 
             Expense expense = new Expense(title, amount, category, selectedDate);
-            viewModel.insert(expense);
-            Toast.makeText(this, "Expense saved", Toast.LENGTH_SHORT).show();
+
+            if (editingId != -1) {
+                expense.setId(editingId);
+                viewModel.update(expense);
+                Toast.makeText(this, "Expense updated", Toast.LENGTH_SHORT).show();
+            } else {
+                viewModel.insert(expense);
+                Toast.makeText(this, "Expense saved", Toast.LENGTH_SHORT).show();
+            }
+
             finish();
         });
 
-        // Cancel button
+        // Cancel
         buttonCancel.setOnClickListener(v -> finish());
     }
 

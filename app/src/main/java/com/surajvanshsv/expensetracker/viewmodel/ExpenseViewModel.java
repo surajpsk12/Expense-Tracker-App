@@ -33,6 +33,10 @@ public class ExpenseViewModel extends AndroidViewModel {
         repository.delete(expense);
     }
 
+    public void update(Expense expense) {
+        repository.update(expense);
+    }
+
     public LiveData<List<Expense>> getAllExpenses() {
         return allExpenses;
     }
@@ -51,5 +55,10 @@ public class ExpenseViewModel extends AndroidViewModel {
 
     public LiveData<List<Expense>> filterByCategory(String category) {
         return repository.filterByCategory(category);
+    }
+
+    // ✅ NEW: Filter expenses by month and year
+    public LiveData<List<Expense>> filterByMonth(String month, String year) {
+        return repository.filterByMonth(month, year);
     }
 }

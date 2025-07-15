@@ -9,7 +9,6 @@ import androidx.room.Query;
 import com.surajvanshsv.expensetracker.data.model.Expense;
 
 import java.util.List;
-
 @Dao
 public interface ExpenseDao {
 
@@ -18,6 +17,9 @@ public interface ExpenseDao {
 
     @Delete
     void delete(Expense expense);
+
+    @androidx.room.Update
+    void update(Expense expense);
 
     @Query("SELECT * FROM expenses ORDER BY date DESC")
     LiveData<List<Expense>> getAllExpenses();
@@ -33,4 +35,8 @@ public interface ExpenseDao {
 
     @Query("SELECT * FROM expenses WHERE category = :category ORDER BY date DESC")
     LiveData<List<Expense>> filterByCategory(String category);
+
+    // ✅ Filter expenses by month and year
+    @Query("SELECT * FROM expenses WHERE strftime('%m', date / 1000, 'unixepoch') = :month AND strftime('%Y', date / 1000, 'unixepoch') = :year ORDER BY date DESC")
+    LiveData<List<Expense>> filterByMonth(String month, String year);
 }

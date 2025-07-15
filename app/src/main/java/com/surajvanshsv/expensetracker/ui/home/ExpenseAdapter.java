@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +17,15 @@ import java.util.*;
 public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder> {
 
     private List<Expense> expenseList = new ArrayList<>();
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(Expense expense);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
     public void setExpenseList(List<Expense> list) {
         this.expenseList = list;
@@ -37,6 +47,12 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         holder.textAmount.setText("₹" + exp.getAmount());
         holder.textCategory.setText(exp.getCategory());
         holder.textDate.setText(new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(exp.getDate()));
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(exp);
+            }
+        });
     }
 
     @Override

@@ -59,5 +59,6 @@
 
     <!-- Common Colors -->
     <color name="transparent">#00000000</color>
+    <color name="divider">#E0E0E0</color>
 
 </resources>

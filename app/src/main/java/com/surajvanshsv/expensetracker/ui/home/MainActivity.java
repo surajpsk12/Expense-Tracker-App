@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -35,6 +34,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.surajvanshsv.expensetracker.R;
 import com.surajvanshsv.expensetracker.data.model.Expense;
 import com.surajvanshsv.expensetracker.ui.add.AddExpenseActivity;
+import com.surajvanshsv.expensetracker.ui.reports.ReportsActivity;
 import com.surajvanshsv.expensetracker.viewmodel.ExpenseViewModel;
 
 import java.text.NumberFormat;
@@ -83,12 +83,23 @@ public class MainActivity extends AppCompatActivity {
         recyclerExpenses.setLayoutManager(new LinearLayoutManager(this));
         recyclerExpenses.setAdapter(adapter);
 
-        // Observers
+        // Observe data
         viewModel.getAllExpenses().observe(this, expenses -> {
             adapter.setExpenseList(expenses);
             updatePieChart(expenses);
             updateBarChart(expenses);
             emptyState.setVisibility(expenses.isEmpty() ? View.VISIBLE : View.GONE);
+
+            adapter.setOnItemClickListener(expense -> {
+                Intent intent = new Intent(MainActivity.this, AddExpenseActivity.class);
+                intent.putExtra("isEdit", true);
+                intent.putExtra("id", expense.getId());
+                intent.putExtra("title", expense.getTitle());
+                intent.putExtra("amount", expense.getAmount());
+                intent.putExtra("category", expense.getCategory());
+                intent.putExtra("date", expense.getDate().getTime());
+                startActivity(intent);
+            });
         });
 
         viewModel.getTotalExpense().observe(this, total -> {
@@ -99,13 +110,19 @@ public class MainActivity extends AppCompatActivity {
             textTodayExpense.setText(formatAmount(today));
         });
 
-        // FAB: Open AddExpenseActivity
-        fabAdd.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AddExpenseActivity.class)));
+        // FAB
+        fabAdd.setOnClickListener(v -> startActivity(new Intent(this, AddExpenseActivity.class)));
 
         // Quick actions
         cardQuickAdd.setOnClickListener(v -> startActivity(new Intent(this, AddExpenseActivity.class)));
-        cardReports.setOnClickListener(v -> Toast.makeText(this, "Reports coming soon", Toast.LENGTH_SHORT).show());
-        cardCategories.setOnClickListener(v -> Toast.makeText(this, "Categories screen coming soon", Toast.LENGTH_SHORT).show());
+        cardReports.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ReportsActivity.class);
+            startActivity(intent);
+        });
+        cardCategories.setOnClickListener(v -> {
+            // You can update this later with actual category management screen
+            Toast.makeText(this, "Categories screen coming soon", Toast.LENGTH_SHORT).show();
+        });
 
         // Toggle chart button
         btnToggleChart.setOnClickListener(v -> {
@@ -120,10 +137,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // View all expenses button
-        btnViewAll.setOnClickListener(v -> Toast.makeText(this, "View all expenses coming soon", Toast.LENGTH_SHORT).show());
+        // View all
+        btnViewAll.setOnClickListener(v -> {
+            Toast.makeText(this, "View all expenses coming soon", Toast.LENGTH_SHORT).show();
+        });
 
-        // Edge-to-edge system bar handling
+        // Edge-to-edge system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
