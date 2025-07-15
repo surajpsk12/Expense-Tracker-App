@@ -38,6 +38,10 @@ charts — developed in **Java** with **Room**, **MVVM architecture**, and **MPA
 - Dark & light theme compatibility
 
 ---
+##📥 App Download (APK): 
+```bash
+https://drive.google.com/file/d/13Jlxy4uuaG4h4RnIZpJZt2QpYauM2ZIj/view?usp=sharing
+````
 
 ## 🚀 Upcoming Features
 - Export expenses as CSV
