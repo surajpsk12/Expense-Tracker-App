@@ -1,84 +1,97 @@
 
-*COMPANY* : CODTECH IT SOLUTIOINS
----
-*NAME* : SURAJ KUMAR 
----
-*INTERN ID* : CT04DH510
----
-*DOMAIN* : ANDROID DEVELOPMENT 
----
-*DURATION* : 4 WEEKS 
----
-*MENTOR* : Neela Santhosh
----
 
 # 💰 Expense Tracker App
 
-A modern and intuitive Android application for managing personal finances, tracking expenses, and visualizing spending using 
-charts — developed in **Java** with **Room**, **MVVM architecture**, and **MPAndroidChart**.
+> **Internship Project @ CODTECH IT SOLUTIONS**
+
+| Internship Info      | Details                            |
+|----------------------|-------------------------------------|
+| **Name**             | Suraj Kumar                         |
+| **Intern ID**        | CT04DH510                           |
+| **Domain**           | Android Development                 |
+| **Duration**         | 4 Weeks                             |
+| **Mentor**           | Neela Santhosh                      |
+
+---
+
+## 📸 Screenshots
+
+<p float="left">
+  <img src="https://github.com/user-attachments/assets/61ea1008-5325-41b0-9b0d-7a0631f44f51" width="200"/>
+  <img src="https://github.com/user-attachments/assets/b2324ea3-643f-4b04-a135-768807600019" width="200"/>
+  <img src="https://github.com/user-attachments/assets/41c5f819-417a-4ef3-93ae-33f12d2a68a9" width="200"/>
+  <img src="https://github.com/user-attachments/assets/c5d6027d-9106-4b2a-85ca-dfba371c371f" width="200"/>
+</p>
+
+---
+
+A sleek and user-friendly **Android Expense Tracker App** to manage daily spending, categorize expenses, 
+and visualize financial habits using charts. Built with **Java**, **Room Database**, and **MVVM architecture**.
 
 ---
 
 ## ✨ Features
 
-### 🔸 Core Functionalities
-- Add, edit, and delete daily expenses
-- Categorize expenses (e.g., Food, Travel, Bills, etc.)
-- View **summary cards** for total and recent spending
-- Toggle between **pie chart** and **bar chart** analytics
+### 🔹 Core Functionalities
+- Add, edit, and delete expenses
+- Manage custom categories (e.g., Food, Travel, Utilities)
+- View total, weekly, and recent expense summaries
+- Floating action buttons for quick & recurring adds
 
-### 📊 Reports
-- Monthly expense breakdown by category
-- Interactive **bar chart** using MPAndroidChart
-- Month-wise filter using Spinner
+### 📊 Visual Reports
+- Monthly category-wise breakdown
+- Interactive **bar chart** powered by MPAndroidChart
+- Month selector with Spinner dropdown
 
-### ⭐ Design & Usability
-- Modern UI with cards, toggle charts, and animated FABs
-- Splash screen for smooth launch experience
-- Dark & light theme compatibility
+### 🖌️ UI/UX
+- Clean modern card-based UI
+- Toggle between **bar chart** & **pie chart**
+- Splash screen on launch
+- Light/Dark theme support
 
 ---
-##📥 App Download (APK): 
-```bash
-https://drive.google.com/file/d/13Jlxy4uuaG4h4RnIZpJZt2QpYauM2ZIj/view?usp=sharing
-````
 
-## 🚀 Upcoming Features
-- Export expenses as CSV
-- Share monthly summaries
-- Cloud backup with Firebase
+## 📥 Download APK
+
+👉 [Click here to download the APK](https://drive.google.com/file/d/13Jlxy4uuaG4h4RnIZpJZt2QpYauM2ZIj/view?usp=sharing)
+
+---
+
+## 🔜 Upcoming Features
+- Export data as CSV
+- Share monthly expense summary
+- Cloud sync with Firebase
 
 ---
 
 ## 🧱 Tech Stack
 
-| Tool | Purpose |
-|------|---------|
-| Java | Main development language |
-| Room | Local database (SQLite ORM) |
-| MVVM | Architecture (Separation of concerns) |
-| MPAndroidChart | Data visualization |
-| ViewModel + LiveData | Reactive UI updates |
-| Material Components | Modern UI/UX |
+| Technology          | Usage                           |
+|---------------------|----------------------------------|
+| Java                | Main programming language        |
+| Room (SQLite)       | Local database                   |
+| MVVM                | Architecture pattern             |
+| MPAndroidChart      | Charting & visual analytics      |
+| Material Components | UI elements & themes             |
+| ViewModel + LiveData| Reactive UI updates              |
 
 ---
 
-## 🧑‍💻 Developer Setup
+## ⚙️ Developer Setup
 
-### Prerequisites
-- Android Studio Arctic Fox or newer
+### Requirements:
+- Android Studio (Arctic Fox or newer)
 - Java 8+
 - Gradle 8+
 - Android SDK 21+
 
-### Clone & Run
-
+### Installation:
 ```bash
 git clone https://github.com/yourusername/ExpenseTrackerApp.git
 cd ExpenseTrackerApp
 ````
 
-open in Android Studio and run
+> Open the project in Android Studio and click ▶️ Run.
 
 ---
 
@@ -87,29 +100,35 @@ open in Android Studio and run
 ```
 com.surajvanshsv.expensetracker/
 │
-├── data/              # Room database, DAO, entities
+├── data/              → Room DB, DAO, models
 ├── ui/
-│   ├── home/          # MainActivity with dashboard UI
-│   ├── add/           # AddExpenseActivity
-│   ├── reports/       # ReportsActivity with bar charts
-│   └── splash/        # SplashActivity
-├── viewmodel/         # ViewModel layer
-└── utils/             # Helper functions and formatters
+│   ├── home/          → Dashboard (MainActivity)
+│   ├── add/           → AddExpenseActivity
+│   ├── reports/       → ReportsActivity with charts
+│   └── splash/        → SplashActivity
+├── viewmodel/         → ViewModel classes
+└── utils/             → Helpers & utilities
 ```
-
-##📸 Screenshots:
-1.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🙌 Credits
-
-* MPAndroidChart by Phil Jay
-* Material Design Components by Google
 
 
+---
 
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 🙌 Acknowledgements
+
+
+
+* [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) by Phil Jay
+* [Material Design Components](https://m3.material.io/) by Google
+
+---
+
+```
