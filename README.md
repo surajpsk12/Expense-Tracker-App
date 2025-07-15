@@ -1,10 +1,16 @@
 
 *COMPANY* : CODTECH IT SOLUTIOINS
+---
 *NAME* : SURAJ KUMAR 
+---
 *INTERN ID* : CT04DH510
+---
 *DOMAIN* : ANDROID DEVELOPMENT 
+---
 *DURATION* : 4 WEEKS 
+---
 *MENTOR* : Neela Santhosh
+---
 
 # 💰 Expense Tracker App
 
